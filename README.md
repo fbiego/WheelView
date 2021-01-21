@@ -20,38 +20,37 @@ WheelView
 
 #### Activity: 
 
-```java    
-WheelView wva = (WheelView) findViewById(R.id.main_wv);
-wva.setOffset(1);
-wva.setItems(Arrays.asList(PLANETS));
-wva.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
-    @Override
-    public void onSelected(int selectedIndex, String item) {
-        Log.d(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
-    }
-});
+```kotlin   
+val planets = arrayListOf("Mercury", "Venus", "Earth", "Mars")
+val wheelView = findViewById<WheelView>(R.id.main_wv)
+wheelView.setItems(planets)
+wheelView.setSeletion(2)
+wheelView.onWheelViewListener = object: WheelView.OnWheelViewListener() {
+       override fun onSelected(selectedIndex: Int, item: String?) {
+                Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item)
+       }
+}
 ```
 
 #### Show in dialog: 
 
-```java
-View outerView = LayoutInflater.from(this).inflate(R.layout.wheel_view, null);
-WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_view_wv);
-wv.setOffset(2);
-wv.setItems(Arrays.asList(PLANETS));
-wv.setSeletion(3);
-wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
-    @Override
-    public void onSelected(int selectedIndex, String item) {
-        Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item);
-    }
-});
+```kotlin
+val planets = arrayListOf("Mercury", "Venus", "Earth", "Mars")
+val outer = LayoutInflater.from(this).inflate(R.layout.wheel_view, null)
+val wheelView = outer.findViewById<WheelView>(R.id.wheel_view_wv)
+wheelView.setItems(planets)
+wheelView.setSeletion(2)
+wheelView.onWheelViewListener = object: WheelView.OnWheelViewListener() {
+       override fun onSelected(selectedIndex: Int, item: String?) {
+                Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item)
+       }
+}
 
-new AlertDialog.Builder(this)
-        .setTitle("WheelView in Dialog")
-        .setView(outerView)
+val dialog = AlertDialog.Builder(this)
+dialog.setTitle("WheelView in Dialog")
+        .setView(outer)
         .setPositiveButton("OK", null)
-        .show();
+        .show()
 ```
     
 License
