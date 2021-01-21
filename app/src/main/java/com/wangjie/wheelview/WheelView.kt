@@ -29,8 +29,8 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
     }
 
 
-    class OnWheelViewListener {
-        fun onSelected(currentIndex: Int, item: String?) {
+    open class OnWheelViewListener {
+        open fun onSelected(currentIndex: Int, item: String?) {
             //Timber.d("Index $currentIndex, ite, $item")
         }
     }
@@ -68,7 +68,7 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
     private var scrollDirection = -1
     private var paint: Paint? = null
     private var viewWidth = 0
-    private var onWheelViewListener: OnWheelViewListener? = null
+    var onWheelViewListener: OnWheelViewListener? = null
 
     val selectedItem: String
         get() = items[currentIndex]
