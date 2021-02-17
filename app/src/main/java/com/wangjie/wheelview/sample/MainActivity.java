@@ -2,12 +2,13 @@ package com.wangjie.wheelview.sample;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.wangjie.wheelview.R;
 import com.wangjie.wheelview.WheelView;
 
