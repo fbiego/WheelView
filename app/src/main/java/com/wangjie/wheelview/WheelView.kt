@@ -30,8 +30,8 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
 
 
     open class OnWheelViewListener {
-        open fun onSelected(currentIndex: Int, item: String?) {
-            //Timber.d("Index $currentIndex, ite, $item")
+        open fun onSelected(index: Int, item: String?) {
+            //Timber.d("Index $index, ite, $item")
         }
     }
 
@@ -58,7 +58,7 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
     }
     private var scrollerTask: Runnable? = null
 
-    private var offset = OFF_SET_DEFAULT // 偏移量（需要在最前面和最后面补全）
+    var offset = OFF_SET_DEFAULT // 偏移量（需要在最前面和最后面补全）
     private var displayItemCount  = 0
     private var currentIndex = 1
     private var initialY = 0
@@ -222,7 +222,7 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
             val itemView = views!!.getChildAt(i) as TextView
             if (position == i) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    itemView.setTextColor(context!!.getColor(R.color.colorAccent))
+                    itemView.setTextColor(Color.parseColor("#55ff55"))
                 }
             } else {
                 itemView.setTextColor(Color.parseColor("#bbbbbb"))
@@ -250,7 +250,7 @@ class WheelView(context: Context, attrs: AttributeSet?) : ScrollView(context, at
         }
         if (null == paint) {
             paint = Paint()
-            paint!!.color =  resources.getColor(R.color.colorAccent)
+            paint!!.color = Color.parseColor("#55ff55")
             paint!!.strokeWidth = dip2px(1f).toFloat()
         }
         val background = object : Drawable() {
