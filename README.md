@@ -22,13 +22,13 @@ WheelView
 
 ```kotlin   
 val planets = arrayListOf("Mercury", "Venus", "Earth", "Mars")
-val wheelView = findViewById<WheelView>(R.id.main_wv)
-wheelView.setItems(planets)
-wheelView.setSeletion(2)
-wheelView.onWheelViewListener = object: WheelView.OnWheelViewListener() {
-       override fun onSelected(selectedIndex: Int, item: String?) {
-                Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item)
-       }
+val wva = findViewById<WheelView>(R.id.main_wv)
+wva.offset = 1
+wva.setItems(PLANETS)
+wva.onWheelViewListener = object  : WheelView.OnWheelViewListener(){
+    override fun onSelected(index:Int, item:String?) {
+        Log.d(TAG, "selectedIndex: $index, item: $item")
+    }
 }
 ```
 
@@ -36,14 +36,15 @@ wheelView.onWheelViewListener = object: WheelView.OnWheelViewListener() {
 
 ```kotlin
 val planets = arrayListOf("Mercury", "Venus", "Earth", "Mars")
-val outer = LayoutInflater.from(this).inflate(R.layout.wheel_view, null)
-val wheelView = outer.findViewById<WheelView>(R.id.wheel_view_wv)
-wheelView.setItems(planets)
-wheelView.setSeletion(2)
-wheelView.onWheelViewListener = object: WheelView.OnWheelViewListener() {
-       override fun onSelected(selectedIndex: Int, item: String?) {
-                Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item)
-       }
+val outerView = LayoutInflater.from(this).inflate(R.layout.wheel_view, null)
+val wv = outerView.findViewById(R.id.wheel_view_wv) as WheelView
+wv.offset = 2
+wv.setItems(PLANETS)
+wv.setSelection(3)
+wv.onWheelViewListener = object :WheelView.OnWheelViewListener() {
+     override fun onSelected(index:Int, item:String?) {
+        Log.d(TAG, "[Dialog]selectedIndex: $index, item: $item")
+     }
 }
 
 val dialog = AlertDialog.Builder(this)
